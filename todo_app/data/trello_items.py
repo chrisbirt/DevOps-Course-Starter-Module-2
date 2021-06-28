@@ -40,17 +40,19 @@ def get_items():
     for item in items:
         item['list_name'] = lists[item['idList']]
 
+    # sort the items by list id, then item name.  list ids will always increment as 'todo', 'doing', 'done'
     sorted_items = sorted(items, key = lambda x: (x['idList'], x['name']))
     
     return sorted_items
 
 
-def add_item(title):
+def add_item(title, descr):
     """
     Adds a new card with the specified title to the 'To Do' list in Trello.
 
     Args:
         title: The title of the card.
+        descr: The description of the card.
 
     Returns:
         item: The saved card.
@@ -58,7 +60,7 @@ def add_item(title):
     lists = get_lists()
     url = 'https://www.trello.com/1/cards?key={0}&token={1}'.format(trello_key, trello_token)
     # pass the the listId for 'To Do' list
-    data = {'name' : title, 'idList': lists['To Do']}   
+    data = {'name':title, 'desc':descr, 'idList':lists['To Do']}   
     resp = requests.post(url, data)
     return json.loads(resp.text)
 

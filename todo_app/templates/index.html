@@ -19,6 +19,12 @@
             <input type="text" name="title" id="title-input" class="form-control">
           </div>
           <div class="col-auto">
+            <label for="descr-input">Description</label>
+          </div>
+          <div class="col">
+            <input type="text" name="descr" id="descr-input" class="form-control">
+          </div>
+          <div class="col-auto">
             <button type="submit" class="btn btn-success">Add Item</button>
           </div>
         </div>
@@ -48,6 +54,8 @@
                 {% endif %}
               </div>
             </div>
+            <i>{{ item.desc }}</i>
+
           </li>
         {% endfor %}
       </ul>
