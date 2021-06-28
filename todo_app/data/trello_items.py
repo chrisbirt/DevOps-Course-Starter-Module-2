@@ -39,8 +39,10 @@ def get_items():
     # enrich the output by appending the list name to each card, based on its list id
     for item in items:
         item['list_name'] = lists[item['idList']]
+
+    sorted_items = sorted(items, key = lambda x: (x['idList'], x['name']))
     
-    return items
+    return sorted_items
 
 
 def add_item(title):
